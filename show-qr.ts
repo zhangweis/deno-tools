@@ -8,4 +8,5 @@ export default async function showQr(input:any) {
     });
     return Object.assign({code}, input);
 }
+
 if (import.meta.main) json2json(showQr);
