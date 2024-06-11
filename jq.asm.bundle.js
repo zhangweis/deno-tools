@@ -1,4 +1,3 @@
-window.document=window['document']||{};
 var jq = (
 function(jq) {
   jq = jq || {};
