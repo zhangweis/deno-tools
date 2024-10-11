@@ -1,10 +1,8 @@
 import * as ethers from 'https://esm.sh/ethers@5.7.2'
 const {providers} = ethers;
 import {
-  addDefaultLocalNetwork,
-  L2TransactionReceipt,
-  L2ToL1MessageStatus,
-} from 'https://esm.sh/@arbitrum/sdk@3.1.13'
+  ChildTransactionReceipt,
+} from 'https://esm.sh/@arbitrum/sdk@4.0.1'
 import json2json from "../json2json.ts";
 
 export default async function executableBlocks({txs,l1rpc,l2rpc}) {
@@ -24,10 +22,10 @@ async function executableBlock(txnHash,l1Provider,l2Provider) {
     throw new Error(`Hmm, ${txnHash} doesn't look like a txn hash...`)
 
   const receipt = await l2Provider.getTransactionReceipt(txnHash)
-  const l2Receipt = new L2TransactionReceipt(receipt)
-  const messages = await l2Receipt.getL2ToL1Messages(l1Provider)
+  const l2Receipt = new ChildTransactionReceipt(receipt)
+  const messages = await l2Receipt.getChildToParentMessages(l1Provider)
   const l2ToL1Msg = messages[0]
-return {block:Number.parseInt(await l2ToL1Msg.getFirstExecutableBlock(l2Provider))};
+  return {block:Number.parseInt(await l2ToL1Msg.getFirstExecutableBlock(l2Provider))};
 }
 
 if (import.meta.main) json2json(executableBlocks);
