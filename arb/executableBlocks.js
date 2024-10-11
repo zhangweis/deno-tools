@@ -5,7 +5,7 @@ import {
   L2TransactionReceipt,
   L2ToL1MessageStatus,
 } from 'https://esm.sh/@arbitrum/sdk@3.1.13'
-import json2json from "https://raw.githubusercontent.com/zhangweis/deno-tools/main/json2json.ts";
+import json2json from "../json2json.ts";
 
 export default async function executableBlocks({txs,l1rpc,l2rpc}) {
 const l1Provider = new providers.JsonRpcProvider(l1rpc)
