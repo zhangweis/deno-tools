@@ -1,4 +1,4 @@
-import qrcode from 'https://jspm.dev/qrcode-terminal';
+import qrcode from 'https://esm.sh/qrcode-terminal@0.12.0';
 import json2json from './json2json.ts';
 export default async function showQr(input:any) {
     const code = await new Promise((resolve,reject)=>{
